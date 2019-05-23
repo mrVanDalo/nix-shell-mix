@@ -2,7 +2,7 @@
 
 let
 
-  scripts = {
+  script = {
     build = pkgs.writeShellScriptBin "build" /* sh */ ''
       echo "this could be your buildscript"
     '';
@@ -25,7 +25,7 @@ in pkgs.mkShell {
   ];
 
   shellHook = ''
-    HISTFILE=${toString ./.}/.history
+    HISTFILE=${toString ./.history}
   '';
 
 }
