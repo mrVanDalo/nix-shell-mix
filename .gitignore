@@ -1,1 +1,4 @@
 .history
+*.tf.json
+.terraform
+*.tf
