@@ -35,7 +35,7 @@ in pkgs.mkShell {
     # IDE setups
     # ----------
 
-    # VSCode hde setup
+    # VSCode ide setup
     # https://github.com/haskell/haskell-ide-engine#using-vs-code-with-nix
     (pkgs.vscode.overrideDerivation (old: {
       postFixup = ''
