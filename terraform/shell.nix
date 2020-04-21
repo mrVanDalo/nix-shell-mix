@@ -1,11 +1,11 @@
-{ pkgs ?  import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { } }:
 
 let
 
   terranix = pkgs.callPackage (pkgs.fetchgit {
     url = "https://github.com/mrVanDalo/terranix.git";
-    rev = "2.1.0";
-    sha256 = "00jqdnxz5zrypqkd4vh37ma5mh40rdzy3yfdqa410gb8hwrvyvfl";
+    rev = "2.2.3";
+    sha256 = "0r7n0c1m81rz22x2bc3kkw63xs3cf8jbfpr73vplnc3yyngkrjxp";
   }) { };
 
   # a custom provider for terraform
@@ -25,18 +25,16 @@ let
     postBuild = "mv go/bin/terraform-provider-namecheap{,_v${version}}";
 
     meta = with pkgs.stdenv.lib; {
-      homepage = https://github.com/adamdecaf/terraform-provider-namecheap;
-      description = "Terraform provider is used to manage namecheap.com resources.";
+      homepage = "https://github.com/adamdecaf/terraform-provider-namecheap";
+      description =
+        "Terraform provider is used to manage namecheap.com resources.";
       platforms = platforms.all;
       license = licenses.mpl20;
       maintainers = with maintainers; [ palo ];
     };
   };
 
-  terraform = pkgs.terraform.withPlugins(p: [
-    p.hcloud
-    namecheapProvider
-  ]);
+  terraform = pkgs.terraform.withPlugins (p: [ p.hcloud namecheapProvider ]);
 
 in pkgs.mkShell {
 
